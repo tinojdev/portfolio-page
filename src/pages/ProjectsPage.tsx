@@ -32,10 +32,10 @@ function ProjectCard({
 	addToFilter: (toAdd: Techonology | Field) => void;
 }) {
 	return (
-		<div className="block m-3 max-w-sm p-6 bg-whitehover:bg-gray-100">
+		<div className="block m-3 max-w-sm py-6 bg-whitehover:bg-gray-100">
 			<div className="flex justify-between">
 				<h5 className="mb-2 text-xl font-semibold tracking-tight text-primary">{project.title}</h5>
-				<a className="ml-2 text-secondary underline" href={project.link}>
+				<a className="ml-2 text-secondary underline" href={project.link} target="_blank">
 					github
 				</a>
 			</div>
@@ -67,7 +67,7 @@ const PROJECTS: Project[] = [
 		description: "This webpage you are viewing right now",
 		technologies: [Techonology.TypeScript, Techonology.React],
 		fields: [Field.Frontend],
-		link: "github",
+		link: "https://github.com/tinojdev/portfolio-page",
 	},
 	{
 		title: "Discord music bot (Typescript)",
@@ -95,18 +95,44 @@ const PROJECTS: Project[] = [
 export default function ProjectsPage() {
 	const [filter, setFilter] = useState<(Techonology | Field)[]>([]);
 
-	function addToFilter() {}
+	function addToFilter(toAdd: Techonology | Field) {
+		if (filter.includes(toAdd)) return;
+
+		setFilter([...filter, toAdd]);
+	}
+
+	function removeFromFilter(toRemove: Techonology | Field) {
+		setFilter(filter.filter((item) => item !== toRemove));
+	}
+
+	const filteredProjects =
+		filter.length === 0
+			? PROJECTS
+			: PROJECTS.filter((project) =>
+					filter.every(
+						(filterItem) =>
+							project.technologies.includes(filterItem as Techonology) || project.fields.includes(filterItem as Field)
+					)
+			  );
 
 	return (
-		<div>
-			<p className="text-secondary pl-5">
+		<div className="container mx-auto pt-5">
+			<p className="text-secondary">
 				filter:{" "}
 				{filter.map((filterItem) => (
-					<a>{filterItem}</a>
+					<a className="cursor-pointer underline px-1" onClick={() => removeFromFilter(filterItem)}>
+						{filterItem}
+					</a>
 				))}
+				{filter.length !== 0 ? "(click tech or subject to remove)" : "(click tech or subject to filter)"}
 			</p>
+			{filter.length !== 0 && (
+				<p className="text-red-400 cursor-pointer">
+					<a onClick={() => setFilter([])}>(remove all)</a>{" "}
+				</p>
+			)}
 			<div>
-				{PROJECTS.map((project, i) => (
+				{filteredProjects.map((project, i) => (
 					<ProjectCard key={i} project={project} addToFilter={addToFilter} />
 				))}
 			</div>
