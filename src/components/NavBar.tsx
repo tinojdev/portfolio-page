@@ -17,6 +17,10 @@ const NAV_ITEMS = [
 		path: "/contact",
 		name: "contact",
 	},
+	{
+		path: "/recipes",
+		name: "recipes",
+	},
 ];
 
 export default function NavBar() {

@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes rotate {
+	to {
+		--angle: 360deg;
+	}
+}
+
+@property --angle {
+	syntax: "<angle>";
+	initial-value: 0deg;
+	inherits: false;
+}

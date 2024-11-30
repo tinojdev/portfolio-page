@@ -7,6 +7,7 @@ import Layout from "./components/Layout.tsx";
 import ProjectsPage from "./pages/ProjectsPage.tsx";
 import CVPage from "./pages/CVPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
+import RecipesPage from "./pages/RecipesPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById("root")!).render(
 					<Route path="/projects" element={<ProjectsPage />} />
 					<Route path="/cv" element={<CVPage />} />
 					<Route path="/contact" element={<ContactPage />} />
+					<Route path="/recipes" element={<RecipesPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

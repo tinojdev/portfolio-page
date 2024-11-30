@@ -11,6 +11,9 @@ export default function Layout() {
 					<br />
 					Currently on last year of master's in Security and Cloud Computing
 				</p>
+				<blockquote className="text-xl italic leading-relaxed text-secondary font-semibold px-4 pt-4">
+					“ get sh*t done ”
+				</blockquote>
 			</div>
 			<NavBar />
 			<Outlet />

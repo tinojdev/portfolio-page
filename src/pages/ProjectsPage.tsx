@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 
 enum Techonology {
 	TypeScript = "typescript",
 	JavaScript = "javascript",
+	Tailwind = "tailwind",
 	Java = "java",
 	Rust = "rust",
 	Python = "python",
+	Django = "django",
 	React = "react",
 	Nodejs = "nodejs",
 	FFmpeg = "ffmpeg",
@@ -65,7 +67,7 @@ const PROJECTS: Project[] = [
 	{
 		title: "Portfolio page",
 		description: "This webpage you are viewing right now",
-		technologies: [Techonology.TypeScript, Techonology.React],
+		technologies: [Techonology.TypeScript, Techonology.React, Techonology.Tailwind],
 		fields: [Field.Frontend],
 		link: "https://github.com/tinojdev/portfolio-page",
 	},
@@ -117,13 +119,28 @@ export default function ProjectsPage() {
 
 	return (
 		<div className="container mx-auto pt-5">
-			<p className="text-secondary">
+			<p className="text-secondary font-medium">
 				filter:{" "}
-				{filter.map((filterItem) => (
-					<a className="cursor-pointer underline px-1" onClick={() => removeFromFilter(filterItem)}>
-						{filterItem}
-					</a>
-				))}
+				<div
+					className="inline"
+					style={
+						filter.length !== 0
+							? ({
+									"--angle": "0deg",
+									borderWidth: "2px",
+									borderRadius: "2px",
+									borderImage: "conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta,red) 1",
+									animation: "1s rotate linear infinite",
+							  } as CSSProperties) // force to CSSProperties since --angle is custom parameter
+							: {}
+					}
+				>
+					{filter.map((filterItem) => (
+						<a className="cursor-pointer underline px-1" onClick={() => removeFromFilter(filterItem)}>
+							{filterItem}
+						</a>
+					))}
+				</div>
 				{filter.length !== 0 ? "(click tech or subject to remove)" : "(click tech or subject to filter)"}
 			</p>
 			{filter.length !== 0 && (
