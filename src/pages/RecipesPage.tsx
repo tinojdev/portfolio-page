@@ -15,12 +15,17 @@ const RECIPES = [
 		link: "https://christieathome.com/blog/sweet-spicy-gochujang-chicken/",
 		text: "gochujang chicken",
 	},
+	{
+		link: "https://www.youtube.com/watch?v=naEpZKwbE_c",
+		text: "chickpea curry",
+	},
 ];
 
 export default function RecipesPage() {
 	return (
 		<div className="container mx-auto">
-			<h1 className="text-2xl text-primary pt-5 pb-2"> These are my favorite recipes</h1>
+			<h1 className="text-2xl text-primary pt-5 pb-0"> These are my favorite recipes</h1>
+			<p className="text-secondary pb-3">Recipes that I (sometimes loosely) followed that turned out great.</p>
 			<ul>
 				{RECIPES.map((recipe, i) => (
 					<li key={i} className="py-1">
